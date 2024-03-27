@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import entity.Users;
 import entity.Netflix;
 import entity.Countries;
+import entity.Email;
 
 public class App 
 {
@@ -32,6 +33,18 @@ public class App
         Users user2 = new Users();
         user2.setName("Riddhi");
         user2.setAccount(account1);
+
+        //Email
+        Email email1=new Email();
+        email1.setEmailAddress("alisha@accolite");
+        email1.setUser(user1);
+
+        Email email2=new Email();
+        email2.setEmailAddress("riddhi@gmail");
+        email2.setUser(user2);
+
+        user1.setEmail(email1);
+        user2.setEmail(email2);
         
         //Countries
         Countries country1 = new Countries();
@@ -50,6 +63,8 @@ public class App
         s.persist(account2);
         s.persist(user1);
         s.persist(user2);
+        s.persist(email1);
+        s.persist(email2);
         s.persist(country1);
         s.persist(country2);
         
@@ -59,9 +74,11 @@ public class App
         
         System.out.println("\n1. One To One:\n");
         
-        for (Users users : n.getUsers()) {
-        	System.out.println(users.getName() + " has user ID: "+users.getId());
-        }
+        Users u=s.find(Users.class, user1.getId());
+        System.out.println("Email for user "+u.getName()+" is "+u.getEmail().getEmailAddress());
+
+        Users u2=s.find(Users.class, user2.getId());
+        System.out.println("Email for user "+u2.getName()+" is "+u2.getEmail().getEmailAddress());
         
         System.out.println("\n2. One To Many:\n");
 

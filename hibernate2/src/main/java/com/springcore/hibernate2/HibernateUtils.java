@@ -11,6 +11,7 @@ import org.hibernate.service.ServiceRegistry;
 import entity.Users;
 import entity.Netflix;
 import entity.Countries;
+import entity.Email;
 
 public class HibernateUtils {
 
@@ -31,6 +32,7 @@ public class HibernateUtils {
         configuration.addAnnotatedClass(Users.class);
         configuration.addAnnotatedClass(Netflix.class);
         configuration.addAnnotatedClass(Countries.class);
+        configuration.addAnnotatedClass(Email.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();
